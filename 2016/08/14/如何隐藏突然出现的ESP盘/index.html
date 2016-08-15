@@ -16,19 +16,19 @@
     
     
 
-    <meta name="description" content="##ESP是什么  EFI系统分区，即 EFI system partition，简写为 ESP。ESP虽然是一个 FAT16 或 FAT32 格式的物理分区，但是其分区标识是 EF(十六进制) 而非常规的 0E 或 0C。因此，该分区在 Windows 操作系统下一般是不可见的。支持 EFI 模式的电脑需要从 ESP 启动系统，EFI 固件可从 ESP 加载 EFI 启动程序和应用程序。
-##怎">
+    <meta name="description" content="ESP是什么  EFI系统分区，即 EFI system partition，简写为 ESP。ESP虽然是一个 FAT16 或 FAT32 格式的物理分区，但是其分区标识是 EF(十六进制) 而非常规的 0E 或 0C。因此，该分区在 Windows 操作系统下一般是不可见的。支持 EFI 模式的电脑需要从 ESP 启动系统，EFI 固件可从 ESP 加载 EFI 启动程序和应用程序。
+原因  可">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何隐藏突然出现的ESP盘 | てんさい次元幼女‘BLOG">
 <meta property="og:url" content="http://yoursite.com/2016/08/14/如何隐藏突然出现的ESP盘/index.html">
 <meta property="og:site_name" content="てんさい次元幼女‘BLOG">
-<meta property="og:description" content="##ESP是什么  EFI系统分区，即 EFI system partition，简写为 ESP。ESP虽然是一个 FAT16 或 FAT32 格式的物理分区，但是其分区标识是 EF(十六进制) 而非常规的 0E 或 0C。因此，该分区在 Windows 操作系统下一般是不可见的。支持 EFI 模式的电脑需要从 ESP 启动系统，EFI 固件可从 ESP 加载 EFI 启动程序和应用程序。
-##怎">
-<meta property="og:updated_time" content="2016-08-14T14:07:39.589Z">
+<meta property="og:description" content="ESP是什么  EFI系统分区，即 EFI system partition，简写为 ESP。ESP虽然是一个 FAT16 或 FAT32 格式的物理分区，但是其分区标识是 EF(十六进制) 而非常规的 0E 或 0C。因此，该分区在 Windows 操作系统下一般是不可见的。支持 EFI 模式的电脑需要从 ESP 启动系统，EFI 固件可从 ESP 加载 EFI 启动程序和应用程序。
+原因  可">
+<meta property="og:updated_time" content="2016-08-15T02:50:05.553Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何隐藏突然出现的ESP盘 | てんさい次元幼女‘BLOG">
-<meta name="twitter:description" content="##ESP是什么  EFI系统分区，即 EFI system partition，简写为 ESP。ESP虽然是一个 FAT16 或 FAT32 格式的物理分区，但是其分区标识是 EF(十六进制) 而非常规的 0E 或 0C。因此，该分区在 Windows 操作系统下一般是不可见的。支持 EFI 模式的电脑需要从 ESP 启动系统，EFI 固件可从 ESP 加载 EFI 启动程序和应用程序。
-##怎">
+<meta name="twitter:description" content="ESP是什么  EFI系统分区，即 EFI system partition，简写为 ESP。ESP虽然是一个 FAT16 或 FAT32 格式的物理分区，但是其分区标识是 EF(十六进制) 而非常规的 0E 或 0C。因此，该分区在 Windows 操作系统下一般是不可见的。支持 EFI 模式的电脑需要从 ESP 启动系统，EFI 固件可从 ESP 加载 EFI 启动程序和应用程序。
+原因  可">
     
     
     
@@ -178,13 +178,14 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p>##ESP是什么<br>  EFI系统分区，即 EFI system partition，简写为 ESP。ESP虽然<br>是一个 FAT16 或 FAT32 格式的物理分区，但是其分区标识是 EF<br>(十六进制) 而非常规的 0E 或 0C。因此，该分区在 Windows 操作<br>系统下一般是不可见的。支持 EFI 模式的电脑需要从 ESP 启动系统，<br>EFI 固件可从 ESP 加载 EFI 启动程序和应用程序。</p>
-<p>##怎么隐藏ESP盘(适用于因某种原因被强制分配盘符的情况)<br>  首先试一下重启，如果不好使在尝试下面方法。<br>方法一：<br>  右键[我的电脑]-&gt;[管理]-&gt;[存储]-&gt;[磁盘管理]对要隐藏的分区右键<br>更改驱动器号和路径-删除-确定即可。<br>方法二：<br>  win+R输入diskpart，出现小黑框，输入顺序为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list disk</span><br></pre></td></tr></table></figure></p>
+    <h2 id="ESP是什么"><a href="#ESP是什么" class="headerlink" title="ESP是什么"></a>ESP是什么</h2><p>  EFI系统分区，即 EFI system partition，简写为 ESP。ESP虽然<br>是一个 FAT16 或 FAT32 格式的物理分区，但是其分区标识是 EF<br>(十六进制) 而非常规的 0E 或 0C。因此，该分区在 Windows 操作<br>系统下一般是不可见的。支持 EFI 模式的电脑需要从 ESP 启动系统，<br>EFI 固件可从 ESP 加载 EFI 启动程序和应用程序。</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>  可能是因为某些软件或者更新在修改ESP内容时分配了盘符但是没有删掉。</p>
+<h2 id="怎么隐藏ESP盘-适用于因某种原因被强制分配盘符的情况"><a href="#怎么隐藏ESP盘-适用于因某种原因被强制分配盘符的情况" class="headerlink" title="怎么隐藏ESP盘(适用于因某种原因被强制分配盘符的情况)"></a>怎么隐藏ESP盘(适用于因某种原因被强制分配盘符的情况)</h2><p>  首先试一下重启，如果不好使在尝试下面方法。<br>方法一：<br>  右键[我的电脑]-&gt;[管理]-&gt;[存储]-&gt;[磁盘管理]对要隐藏的分区右键<br>更改驱动器号和路径-删除-确定即可。<br>方法二：<br>  win+R输入diskpart，出现小黑框，输入顺序为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list disk</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sel disk 0</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sel part 1</span><br></pre></td></tr></table></figure>
 <p>ESP盘序号为1<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">remove</span><br></pre></td></tr></table></figure></p>
-<p>方法三：<br>  下载磁盘管理软件，推荐DiskGenius。找到ESP卷查看是否分配盘符，如果是，<br>右键删除盘符。</p>
-<p>##分配盘符情况先写到这==</p>
+<p>方法三：<br>  下载磁盘管理软件，推荐DiskGenius。找到ESP卷查看是否分配盘符，如果是，<br>右键删除盘符。<a href="http://www.diskgenius.cn/" target="_blank" rel="external">http://www.diskgenius.cn/</a></p>
+<p>##没分配盘符出现这个的话大概重启就好了</p>
 
   </section>
 
