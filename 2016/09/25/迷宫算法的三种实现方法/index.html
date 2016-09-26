@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      迷宫算法的三种实现方法 | てんさい次元幼女‘BLOG 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="John Doe">
+    
+    
+
+    <meta name="description" content="问题描述  给定一个迷宫，然后求出迷宫从入口到出口的路径，求出一条即可。实现方法不限。以一个m×n的长方阵表示迷宫，1和0分别表示迷宫中的通路和障碍。设计一个程序，对设定的迷宫，求出一条从入口到出口的通路，或得出没有通路的结论。  当没有路可走时要重新寻找出路，所以用一下几种方法实现回溯功能即可。其中栈和递归相似，都是以深度优先探索。队列则是广度优先探索,所以队列方法也是求出最短路径的一种方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="迷宫算法的三种实现方法 | てんさい次元幼女‘BLOG">
+<meta property="og:url" content="http://yoursite.com/2016/09/25/迷宫算法的三种实现方法/index.html">
+<meta property="og:site_name" content="てんさい次元幼女‘BLOG">
+<meta property="og:description" content="问题描述  给定一个迷宫，然后求出迷宫从入口到出口的路径，求出一条即可。实现方法不限。以一个m×n的长方阵表示迷宫，1和0分别表示迷宫中的通路和障碍。设计一个程序，对设定的迷宫，求出一条从入口到出口的通路，或得出没有通路的结论。  当没有路可走时要重新寻找出路，所以用一下几种方法实现回溯功能即可。其中栈和递归相似，都是以深度优先探索。队列则是广度优先探索,所以队列方法也是求出最短路径的一种方法。">
+<meta property="og:updated_time" content="2016-09-25T14:54:02.019Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="迷宫算法的三种实现方法 | てんさい次元幼女‘BLOG">
+<meta name="twitter:description" content="问题描述  给定一个迷宫，然后求出迷宫从入口到出口的路径，求出一条即可。实现方法不限。以一个m×n的长方阵表示迷宫，1和0分别表示迷宫中的通路和障碍。设计一个程序，对设定的迷宫，求出一条从入口到出口的通路，或得出没有通路的结论。  当没有路可走时要重新寻找出路，所以用一下几种方法实现回溯功能即可。其中栈和递归相似，都是以深度优先探索。队列则是广度优先探索,所以队列方法也是求出最短路径的一种方法。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">てんさい次元幼女‘BLOG</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          上帝把智慧撒向人间，机智的我撑了把伞
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">迷宫算法的三种实现方法</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-09-25" class="post-meta__date date">2016-09-25</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>  给定一个迷宫，然后求出迷宫从入口到出口的路径，求出一条即可。<br>实现方法不限。以一个m×n的长方阵表示迷宫，1和0分别表示迷宫中<br>的通路和障碍。设计一个程序，对设定的迷宫，求出一条从入口到出<br>口的通路，或得出没有通路的结论。<br>  当没有路可走时要重新寻找出路，所以用一下几种方法实现回溯功<br>能即可。其中栈和递归相似，都是以深度优先探索。队列则是广度优<br>先探索,所以队列方法也是求出最短路径的一种方法。</p>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>  栈的先进后出实现了深度优先搜索。首先用一个整形maze[][]二维<br>数组存储迷宫。然后需要一个predecessor[][]二维数组来存储前<br>继坐标点。例如 predecessor[2][3] = {1,3} 代表从{1,3}点到<br>{2,3}。 predecessor的作用是利用下标和存储的元素来存储走过的<br>路径。最后需要一个栈。这个栈就是这个迷宫回溯的关键。下面边上<br>代码边讲解。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include &lt;stack&gt;</span></span><br><span class="line"><span class="comment">#include &lt;list&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">const int M = 7;</span><br><span class="line">const int N = 9;</span><br><span class="line">class Point</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">	Point(int x = 0,int y = 0):m(x),n(y)&#123;&#125;</span><br><span class="line">	int m,n;</span><br><span class="line">&#125;;</span><br><span class="line">class Maze</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">	int maze[M][N];</span><br><span class="line">	Point predecessor[M][N];</span><br><span class="line">	stack&lt;Point  , list&lt;Point&gt; &gt; stack;</span><br><span class="line">public:</span><br><span class="line">	Maze();</span><br><span class="line">	~Maze();</span><br><span class="line"></span><br><span class="line">	void fresh();					           	//刷新迷宫</span><br><span class="line">	void Print_Maze();				       	//打印迷宫</span><br><span class="line">	void Visit(int m,int n,Point p);	//push</span><br><span class="line">	void Go();						           	//走迷宫</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>用栈实现回溯的方法就是先走一条路，如果不通就一直pop()回溯<br>到其他可走的点继续探索下一个路线知道找到出口。再利用predecessor<br>存储的上一步位置坐标将本路线坐标一步一步打印出来。<br>下面是核心代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">void Maze::Visit(int m,int n,Point p)		//push</span><br><span class="line">&#123;</span><br><span class="line">	Point q; q.m = m; q.n = n;</span><br><span class="line">	predecessor[m][n].m = p.m;</span><br><span class="line">	predecessor[m][n].n = p.n;</span><br><span class="line">	maze[m][n] = 2;</span><br><span class="line">	stack.push(q);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Maze::Go()								//走迷宫</span><br><span class="line">&#123;</span><br><span class="line">	maze[1][1] = 2;</span><br><span class="line">	Point p; p.m = 1; p.n = 1;</span><br><span class="line">	stack.push(p);</span><br><span class="line">	<span class="keyword">while</span>( !stack.empty() )</span><br><span class="line">	&#123;</span><br><span class="line">		p = stack.top();</span><br><span class="line">		stack.pop();</span><br><span class="line">		<span class="keyword">if</span>(p.m == M-2 &amp;&amp; p.n == N-2)</span><br><span class="line">			<span class="built_in">break</span>;</span><br><span class="line">		<span class="keyword">if</span>(maze[p.m+1][p.n] == 1 &amp;&amp; p.m+1 &lt; M-1)</span><br><span class="line">			Visit(p.m+1,p.n,p);</span><br><span class="line">		<span class="keyword">if</span>(maze[p.m-1][p.n] == 1 &amp;&amp; p.m-1 &gt; 0)</span><br><span class="line">			Visit(p.m-1,p.n,p);</span><br><span class="line">		<span class="keyword">if</span>(maze[p.m][p.n+1] == 1 &amp;&amp; p.n+1 &lt; N-1)</span><br><span class="line">			Visit(p.m,p.n+1,p);</span><br><span class="line">		<span class="keyword">if</span>(maze[p.m][p.n-1] == 1 &amp;&amp; p.n-1 &gt; 0)</span><br><span class="line">			Visit(p.m,p.n-1,p);</span><br><span class="line">		Print_Maze();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(p.m == M-2 &amp;&amp; p.n == N-2)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;p.m&lt;&lt;<span class="string">" "</span>&lt;&lt;p.n&lt;&lt;endl;</span><br><span class="line">		<span class="keyword">while</span>(predecessor[p.m][p.n].m != -1)</span><br><span class="line">		&#123;</span><br><span class="line">			p = predecessor[p.m][p.n];</span><br><span class="line">			cout&lt;&lt;p.m&lt;&lt;<span class="string">" "</span>&lt;&lt;p.n&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;<span class="string">"迷宫不通"</span>&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><p>递归与栈方法很相似，都是用predecessor存储前一步位置坐标<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">void Maze::Visit(int m,int n,Point p)		</span><br><span class="line">&#123;</span><br><span class="line">	predecessor[m][n].m = p.m;</span><br><span class="line">	predecessor[m][n].n = p.n;</span><br><span class="line">	maze[m][n] = 2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Point Maze::Serch(Point p)</span><br><span class="line">&#123;</span><br><span class="line">	Print_Maze();</span><br><span class="line">	<span class="keyword">if</span>(p.m == M-2 &amp;&amp; p.n == N-2)</span><br><span class="line">		<span class="built_in">return</span> p;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(maze[p.m+1][p.n] == 1 &amp;&amp; p.m+1 &lt; M-1)</span><br><span class="line">	&#123;</span><br><span class="line">		Visit(p.m+1,p.n,p);</span><br><span class="line">		p.m++;</span><br><span class="line">		Serch(p);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(maze[p.m-1][p.n] == 1 &amp;&amp; p.m-1 &gt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		Visit(p.m-1,p.n,p);</span><br><span class="line">		p.m--;</span><br><span class="line">		Serch(p);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(maze[p.m][p.n+1] == 1 &amp;&amp; p.n+1 &lt; N-1)</span><br><span class="line">	&#123;</span><br><span class="line">		Visit(p.m,p.n+1,p);</span><br><span class="line">		p.n++;</span><br><span class="line">		Serch(p);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(maze[p.m][p.n-1] == 1 &amp;&amp; p.n-1 &gt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		Visit(p.m,p.n-1,p);</span><br><span class="line">		p.n--;</span><br><span class="line">		Serch(p);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(maze[p.m][p.n] == 2 &amp;&amp; p.m == 1 &amp;&amp; p.n == 1)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">return</span> p;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		int x = p.m; int y = p.n;</span><br><span class="line">		p.m = predecessor[x][y].m;</span><br><span class="line">		p.n = predecessor[x][y].n;</span><br><span class="line">		Serch(p);</span><br><span class="line">		<span class="built_in">return</span> p;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Maze::Go()								//走迷宫</span><br><span class="line">&#123;</span><br><span class="line">	maze[1][1] = 2;</span><br><span class="line">	Point p; p.m = 1; p.n = 1;</span><br><span class="line">	p = Serch(p);</span><br><span class="line">	<span class="keyword">if</span>(p.m == M-2 &amp;&amp; p.n == N-2)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;p.m&lt;&lt;<span class="string">" "</span>&lt;&lt;p.n&lt;&lt;endl;</span><br><span class="line">		<span class="keyword">while</span>(predecessor[p.m][p.n].m != -1)</span><br><span class="line">		&#123;</span><br><span class="line">			p = predecessor[p.m][p.n];</span><br><span class="line">			cout&lt;&lt;p.m&lt;&lt;<span class="string">" "</span>&lt;&lt;p.n&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;<span class="string">"迷宫不通"</span>&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

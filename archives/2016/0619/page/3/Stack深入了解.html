@@ -1,0 +1,134 @@
+<hr>
+<p>title: Stack&amp;Queue STL源码<br>date: 2016-06-19 19:54:01</p>
+<h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2><h2 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h2><p>  stack是一种先进后出的数据结构，他只有一个出口，可以push(存)，pop(取)。</p>
+<p>  在STL源码中，Stack的实现是以deque为底层容器，在加以修改来完成先进后出的功能。因为stack<br>是以修改某物接口形式来完成工作，所以被称为 adapter（配接器）,归类为container adapter（容<br>器配接器）</p>
+<p>  注：stack没有迭代器。（stack不提供遍历功能因此也不提供迭代器）</p>
+<h3 id="下面是Stack的源代码"><a href="#下面是Stack的源代码" class="headerlink" title="下面是Stack的源代码"></a>下面是Stack的源代码</h3><p>以deque作为底层容器，在此基础上加以限制完成Stack的功能；期中__STL_NULL_TMPL_ARGS为组态。</p>
+<pre><code class="bash">template&lt; class T,class Sequence = deque&lt;T&gt; &gt;
+class Stack
+{
+    friend bool operator== __STL_NULL_TMPL_ARGS (const stack&lt;T, Sequence&gt;&amp; x, const stack&lt;T,Sequence&gt;&amp; y);
+    friend bool operator&lt; __STL_NULL_TMPL_ARGS  (const stack&lt;T, Sequence&gt;&amp; x, const stack&lt;T, Sequence&gt;&amp; y);
+
+public:
+    typedef typename Sequence::value_<span class="built_in">type</span> value_<span class="built_in">type</span>;
+    typedef typename Sequence::size_<span class="built_in">type</span> size_<span class="built_in">type</span>;
+    typedef typename Sequence::reference reference;
+    typedef typename Sequence::const_reference const_reference;
+protected:
+    Sequence c;            //底层容器
+public:
+    //一下完全利用Sequence c 的操作，完成 stack 的操作
+    bool empty() const { <span class="built_in">return</span> c.empty(); }
+    size_<span class="built_in">type</span> size() const { <span class="built_in">return</span> c,size(); }
+    const_reference top() const { <span class="built_in">return</span> c.back(); }
+    reference <span class="function"><span class="title">top</span></span>() { <span class="built_in">return</span> c.back(); }
+    //deque是两头可进出， stack 是末端进，末端出 （所以后进者先出）
+    void push(const value_<span class="built_in">type</span>&amp; x) { c.push_back(x); }
+    void <span class="function"><span class="title">pop</span></span>() { c.pop_back(); }
+};
+</code></pre>
+<p>运算符重载方法</p>
+<pre><code class="bash">template &lt;class T,class Sequence&gt;
+
+bool operator==(const stack&lt;T, Sequence&gt;&amp; x, const stack&lt;T,Sequence&gt;&amp; y)
+{
+    <span class="built_in">return</span> x.c == y.c;
+}
+
+template &lt;class T,class Sequence&gt;
+
+bool operator&lt;(const stack&lt;T, Sequence&gt;&amp; x, const stack&lt;T, Sequence&gt;&amp; y)
+{
+    <span class="built_in">return</span> x.c &lt; y.c;
+}
+</code></pre>
+<p>  List也是双向开口且上述源代码中使用的函数empty，size，back，push_back，pop_backlist都<br>具备，所以可以将list作为底层容器进行测试。</p>
+<pre><code class="bash">//list 做底层容器
+int <span class="function"><span class="title">main</span></span>()
+{
+    stack&lt; int, list&lt;int&gt; &gt; istack;
+    istack.push(1);
+    istack.push(3);
+    istack.push(5);
+    istack.push(7);
+
+    cout &lt;&lt; istack.size() &lt;&lt; endl;    //4
+    cout &lt;&lt; istack.top() &lt;&lt; endl;   //7
+
+    istack.pop(); cout &lt;&lt; istack.top() &lt;&lt; endl;    //5
+    istack.pop(); cout &lt;&lt; istack.top() &lt;&lt; endl;    //3
+    istack.pop(); cout &lt;&lt; istack.top() &lt;&lt; endl;    //1
+
+    cout &lt;&lt; istack.size() &lt;&lt;endl;    //1
+    <span class="built_in">return</span> 0;
+}
+</code></pre>
+<h2 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h2><p>  Queue是一种先进先出的数据结构，他有两个出口（低端进，顶端出），可以push(存)，pop(取)。</p>
+<p>  在STL源码中，Queue的实现是以deque为底层容器，在加以修改来完成先进后出的功能。因为Queue<br>是以修改某物接口形式来完成工作，所以被称为 adapter（配接器）,归类为container adapter（容<br>器配接器）</p>
+<p>  注：Queue没有迭代器。（Queue不提供遍历功能因此也不提供迭代器）</p>
+<h3 id="下面是Stack的源代码-1"><a href="#下面是Stack的源代码-1" class="headerlink" title="下面是Stack的源代码"></a>下面是Stack的源代码</h3><p>道理同Stack只改变进出即可</p>
+<pre><code class="bash">
+template &lt; class T, class Sequence = deque&lt;T&gt; &gt;
+
+class queue
+{
+    friend bool operator== __STL_NULL_TMPL_ARGS (const queue&amp; x, const queue&amp; y );
+    friend bool operator&lt; __STL_NULL_TMPL_ARGS (const queue&lt;T, Sequence&gt;&amp; x, const queue&lt;T, Sequence&gt;&amp; y);
+    //以下的__STL_NULL_TMPL_ARGS会展开为 &lt;&gt;
+public:
+    typedef typename Sequence::value_<span class="built_in">type</span> value_<span class="built_in">type</span>;
+    typedef typename Sequence::size_<span class="built_in">type</span> size_<span class="built_in">type</span>;
+    typedef typename Sequence::reference reference;
+    typedef typename Sequence::const_reference const_reference;
+protected:
+    Sequence c;
+public:
+    //以下完全利用 Sequence c 的操作，完成queue的操作
+    bool empty() const { <span class="built_in">return</span> c.empty(); }
+    size_<span class="built_in">type</span> size() const { <span class="built_in">return</span> c.size(); }
+    reference <span class="function"><span class="title">front</span></span>() { <span class="built_in">return</span> c.front(); }
+    const_reference front() const { <span class="built_in">return</span> c.front(); }
+    reference <span class="function"><span class="title">back</span></span>() { <span class="built_in">return</span> c.back(); }
+    const_reference back() const { <span class="built_in">return</span> c.back(); }
+    //deque是两头可进可出，queue是末端进，前端出（所以先进者先出）
+    void push (const value_<span class="built_in">type</span>&amp; x) { c.push_back(); }
+    void <span class="function"><span class="title">pop</span></span>() { c.pop_front(); }
+};
+
+template &lt;class T, class Sequence&gt;
+
+bool operator==(const queue&lt; T, Sequence &gt;&amp; x, const queue&lt;T, Sequence&gt;&amp; y )
+{
+    <span class="built_in">return</span> x.c == y.c;
+}
+
+template &lt;class T, class Sequence &gt;
+
+bool operator&lt;(const queue&lt;T, Sequence&gt;&amp; x, const queue&lt;T, Sequence&gt;&amp; y)
+{
+    <span class="built_in">return</span> x.c &lt; y.c;
+}
+
+//用list做底层容器
+int <span class="function"><span class="title">main</span></span>()
+{
+    queue&lt;int, list&lt;int&gt; &gt; iqueue;
+    iqueue.push(1);
+    iqueue.push(3);
+    iqueue.push(5);
+    iqueue.push(7);
+
+    cout&lt;&lt; iqueue.size() &lt;&lt;endl;    //4
+    cout&lt;&lt; iqueue.front() &lt;&lt;endl;    //1
+
+    iqueue.pop(); cout &lt;&lt; iqueue.front() &lt;&lt;endl;    //3
+    iqueue.pop(); cout &lt;&lt; iqueue.front() &lt;&lt;endl;    //5
+    iqueue.pop(); cout &lt;&lt; iqueue.front() &lt;&lt;endl;    //7
+    cout&lt;&lt; iqueue.size() &lt;&lt; endl;    //1
+
+    <span class="built_in">return</span> 0;
+}
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/kabaneirui/-markdownphoto/master/03.gif" alt="01"></p>
+<h3 id="本尊要回家吃药啦-233333"><a href="#本尊要回家吃药啦-233333" class="headerlink" title="本尊要回家吃药啦~~~233333"></a>本尊要回家吃药啦~~~233333</h3>
