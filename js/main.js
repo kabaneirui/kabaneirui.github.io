@@ -1,5 +1,4 @@
-$(document).ready(function() {
-  alert("init()");
+$(document).ready(function($) {
   $('a.blog-button').click(function() {
     if ($('.panel-cover').hasClass('panel-cover--collapsed')) return;
     currentWidth = $('.panel-cover').width();
