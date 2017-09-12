@@ -7,7 +7,7 @@
     
 
     <title>
-      IOS,Android本地文件的读取与写入 | てんさい次元幼女‘BLOG 
+      IOS,Android本地文件的读取与写入 | てんさい次元幼女‘BLOG
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -28,7 +28,7 @@
 <meta name="twitter:title" content="IOS,Android本地文件的读取与写入 | てんさい次元幼女‘BLOG">
 <meta name="twitter:description" content="接着写之前VR宠物养成游戏中遇到的问题，这篇就写那个折磨我一天的大（小）bug。就是文件的读取写入问题，在pc测试的时候是可以用的，但是发布到android平台后就找不到文件了。折磨了一整天，还麻烦工作室大佬帮我从零开始找bug，结果半夜电脑没电了，躺床上找到雨松大牛博客里正好有一个文章是我这个问题。哭瞎。  代码中我们保存文件的路径是Application.persistentDataPat">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/kabaneirui/-markdownphoto/master/04.jpg">
-    
+
     
     
       <link rel="icon" type="image/x-icon" href="/favicon.png">
@@ -37,8 +37,39 @@
     <link rel="stylesheet" href="/css/highlight.css">
     <link rel="stylesheet" href="/css/archive.css">
     <link rel="stylesheet" href="/css/china-social-icon.css">
+    ejs
+    
+    <script type="text/javascript" src="/live2d/script.js"></script>
+    <canvas id="live2dcanvas" width="150" height="300" class="live2d"></canvas>
+    <style>
+      #live2dcanvas {
+        position: fixed;
+        right: 0px;
+        z-index: 999;
+        pointer-events: none;
+        bottom: -20px;
+      }
+    </style>
+    <script>loadlive2d("live2dcanvas" ,"/live2d/assets/z16/z16.model.json",0.5)</script>
+  
 
+    
+    <script type="text/javascript" src="/live2d/script.js"></script>
+    <canvas id="live2dcanvas" width="150" height="300" class="live2d"></canvas>
+    <style>
+      #live2dcanvas {
+        position: fixed;
+        right: 0px;
+        z-index: 999;
+        pointer-events: none;
+        bottom: -20px;
+      }
+    </style>
+    <script>loadlive2d("live2dcanvas" ,"/live2d/assets/Unitychan/unitychan.model.json",0.5)</script>
+  
 </head>
+
+
 <body>
 
     <span class="mobile btn-mobile-menu">
@@ -206,7 +237,7 @@ string filepath = <span class="string">"jar:file://"</span> + Application.dataPa
     <script src="/js/jquery.min.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/scale.fix.js"></script>
-    
+
 
     
 
@@ -239,6 +270,19 @@ string filepath = <span class="string">"jar:file://"</span> + Application.dataPa
 <!--[if IE 6]>
   <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
 <![endif]-->
-
+    
+    <script type="text/javascript" src="/live2d/script.js"></script>
+    <canvas id="live2dcanvas" width="150" height="300" class="live2d"></canvas>
+    <style>
+      #live2dcanvas {
+        position: fixed;
+        right: 0px;
+        z-index: 999;
+        pointer-events: none;
+        bottom: -20px;
+      }
+    </style>
+    <script>loadlive2d("live2dcanvas" ,"/live2d/assets/z16/z16.model.json",0.5)</script>
+  
 </body>
 </html>
