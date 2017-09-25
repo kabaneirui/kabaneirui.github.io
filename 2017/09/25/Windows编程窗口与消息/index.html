@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Windows编程窗口与消息 | てんさい次元幼女‘BLOG
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="John Doe">
+    
+    
+
+    <meta name="description" content="匈牙利标记法12345678910111213141516前缀		       数据类型c		       char或WCHAR或TCHARby		     BYTEn		       shorti		       intx,y		     int，表示x坐标和y坐标cx,cy		   int，表示x或y的长度，c表示countB或f		    BOOL（int），f表示flagw">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows编程窗口与消息 | てんさい次元幼女‘BLOG">
+<meta property="og:url" content="http://yoursite.com/2017/09/25/Windows编程窗口与消息/index.html">
+<meta property="og:site_name" content="てんさい次元幼女‘BLOG">
+<meta property="og:description" content="匈牙利标记法12345678910111213141516前缀		       数据类型c		       char或WCHAR或TCHARby		     BYTEn		       shorti		       intx,y		     int，表示x坐标和y坐标cx,cy		   int，表示x或y的长度，c表示countB或f		    BOOL（int），f表示flagw">
+<meta property="og:updated_time" content="2017-09-25T14:06:20.503Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows编程窗口与消息 | てんさい次元幼女‘BLOG">
+<meta name="twitter:description" content="匈牙利标记法12345678910111213141516前缀		       数据类型c		       char或WCHAR或TCHARby		     BYTEn		       shorti		       intx,y		     int，表示x坐标和y坐标cx,cy		   int，表示x或y的长度，c表示countB或f		    BOOL（int），f表示flagw">
+
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+    
+    <script type="text/javascript" src="/live2d/script.js"></script>
+    <canvas id="live2dcanvas" width="150" height="300" class="live2d"></canvas>
+    <style>
+      #live2dcanvas {
+        position: fixed;
+        right: 0px;
+        z-index: 999;
+        pointer-events: none;
+        bottom: -20px;
+      }
+    </style>
+    <script>loadlive2d("live2dcanvas" ,"/live2d/assets/z16/z16.model.json",0.5)</script>
+  
+
+    
+    <script type="text/javascript" src="/live2d/script.js"></script>
+    <canvas id="live2dcanvas" width="150" height="300" class="live2d"></canvas>
+    <style>
+      #live2dcanvas {
+        position: fixed;
+        right: 0px;
+        z-index: 999;
+        pointer-events: none;
+        bottom: -20px;
+      }
+    </style>
+    <script>loadlive2d("live2dcanvas" ,"/live2d/assets/Unitychan/unitychan.model.json",0.5)</script>
+  
+</head>
+
+
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">てんさい次元幼女‘BLOG</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          上帝把智慧撒向人间，机智的我撑了把伞
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">Windows编程窗口与消息</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-09-25" class="post-meta__date date">2017-09-25</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="匈牙利标记法"><a href="#匈牙利标记法" class="headerlink" title="匈牙利标记法"></a>匈牙利标记法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">前缀		       数据类型</span><br><span class="line">c		       char或WCHAR或TCHAR</span><br><span class="line">by		     BYTE</span><br><span class="line">n		       short</span><br><span class="line">i		       int</span><br><span class="line">x,y		     int，表示x坐标和y坐标</span><br><span class="line">cx,cy		   int，表示x或y的长度，c表示count</span><br><span class="line">B或f		    BOOL（int），f表示flag</span><br><span class="line">w		       WORD(无符号短整形)</span><br><span class="line">l		       LONG(长整形)</span><br><span class="line">dw		     DWORD(无符号长整形)</span><br><span class="line">fn		     函数</span><br><span class="line">s		       字符串</span><br><span class="line">sz		     以零结束的字符串</span><br><span class="line">h	         句柄</span><br><span class="line">p		       指针</span><br></pre></td></tr></table></figure>
+<h3 id="常用头文件"><a href="#常用头文件" class="headerlink" title="常用头文件"></a>常用头文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">WINDEF.H	  基本数据类型定义</span><br><span class="line">WINNT.H		  支持unicode的类型定义</span><br><span class="line">WINBASE.H	  内核函数</span><br><span class="line">WINUSER.H	  用户界面函数</span><br><span class="line">WINGDI.H 	  图形设备接口函数</span><br></pre></td></tr></table></figure>
+<h3 id="句柄"><a href="#句柄" class="headerlink" title="句柄"></a>句柄</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HINSTANCE 	实例句柄（程序本身）</span><br><span class="line">HWND	     	窗口句柄</span><br><span class="line">HDC		      设备环境句柄</span><br></pre></td></tr></table></figure>
+<h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MSG		       消息结构</span><br><span class="line">WNDCLASS	   窗口类结构</span><br><span class="line">PAINTSTRUCT	 绘制结构</span><br><span class="line">RECT		     矩形结构</span><br></pre></td></tr></table></figure>
+<h3 id="常用的常量前缀"><a href="#常用的常量前缀" class="headerlink" title="常用的常量前缀"></a>常用的常量前缀</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">前缀		        常量</span><br><span class="line">CS		        类风格选项</span><br><span class="line">CW		        创建窗口选项</span><br><span class="line">DT		        文本绘制选项</span><br><span class="line">IDI		        图标的ID号</span><br><span class="line">IDC		        光标的ID号</span><br><span class="line">MB		        消息框选项</span><br><span class="line">SND		        声音选项</span><br><span class="line">WM		        窗口消息</span><br><span class="line">WS		        窗口风格</span><br></pre></td></tr></table></figure>
+<h4 id="LPSTR与PSTR的区别："><a href="#LPSTR与PSTR的区别：" class="headerlink" title="LPSTR与PSTR的区别："></a>LPSTR与PSTR的区别：</h4><p>这两种数据类型WINNT.H中都声明为指向字符串的指针。前缀LP代表长指针，是16位windows的产物。</p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+    
+    <script type="text/javascript" src="/live2d/script.js"></script>
+    <canvas id="live2dcanvas" width="150" height="300" class="live2d"></canvas>
+    <style>
+      #live2dcanvas {
+        position: fixed;
+        right: 0px;
+        z-index: 999;
+        pointer-events: none;
+        bottom: -20px;
+      }
+    </style>
+    <script>loadlive2d("live2dcanvas" ,"/live2d/assets/z16/z16.model.json",0.5)</script>
+  
+</body>
+</html>
